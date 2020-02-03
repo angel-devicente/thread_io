@@ -23,6 +23,11 @@ mpirun -np 16 ./test_t
 
 or if run in a cluster, see file /submit.sh/
 
+This will generate /n_messages/ from each process into /stdout/, /stderr/ and
+also in the file /test.log/. The messages will not be sorted by rank, but no
+messages will be lost. The number of messages don't have to be the same from
+each process (and process 0, thread 0, has no information about the number of
+messages to expect), but for simplicity they are at the moment (see /To do/).
 
 ** To do
 

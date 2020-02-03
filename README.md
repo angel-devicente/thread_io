@@ -1,14 +1,14 @@
 
 # Table of Contents
 
-1.  [MPI I/O with threads](#org68e9220)
-    1.  [Compilation of test code](#org2b8d1bc)
-    2.  [Usage](#org7168e31)
-    3.  [To do](#org733f654)
+1.  [MPI I/O with threads](#orga008421)
+    1.  [Compilation of test code](#orgcb6c14d)
+    2.  [Usage](#orgf53bf4e)
+    3.  [To do](#org4f2c2e1)
 
 
 
-<a id="org68e9220"></a>
+<a id="orga008421"></a>
 
 # MPI I/O with threads
 
@@ -20,14 +20,14 @@ original thread), that might arrive at any time and not necessarily the same
 number of them from every process.
 
 
-<a id="org2b8d1bc"></a>
+<a id="orgcb6c14d"></a>
 
 ## Compilation of test code
 
     $ mpicc  -o test_t thread_io.c test.c
 
 
-<a id="org7168e31"></a>
+<a id="orgf53bf4e"></a>
 
 ## Usage
 
@@ -35,8 +35,14 @@ number of them from every process.
 
 or if run in a cluster, see file *submit.sh*
 
+This will generate *n\_messages* from each process into *stdout*, *stderr* and
+also in the file *test.log*. The messages will not be sorted by rank, but no
+messages will be lost. The number of messages don't have to be the same from
+each process (and process 0, thread 0, has no information about the number of
+messages to expect), but for simplicity they are at the moment (see *To do*).
 
-<a id="org733f654"></a>
+
+<a id="org4f2c2e1"></a>
 
 ## To do
 
