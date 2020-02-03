@@ -1,0 +1,31 @@
+#+OPTIONS: ^:nil
+
+* MPI I/O with threads
+
+Test code to implement I/O in MPI via a dedicated thread in process 0.
+
+The idea here is that process 0 creates a thread that is continuously in a loop
+waiting for messages from all processes (including process 0 itself, in the
+original thread), that might arrive at any time and not necessarily the same
+number of them from every process.
+
+** Compilation of test code
+
+#+BEGIN_SRC bash 
+$ mpicc  -o test_t thread_io.c test.c
+#+END_SRC
+
+** Usage
+
+#+BEGIN_SRC bash 
+mpirun -np 16 ./test_t
+#+END_SRC
+
+or if run in a cluster, see file /submit.sh/
+
+
+** To do
+
+Parameterize number of messages printed from every process and add an option to
+perform random "sleeps" in processes to study the behaviour of possible
+race conditions.
